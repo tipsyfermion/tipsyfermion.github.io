@@ -12,6 +12,11 @@
   {% assign title = post.title %}
 {% endif %}
 
+{% assign force_no_permalink = include.no_permalink %}
+{% if post.collection == 'talks' %}
+  {% assign force_no_permalink = true %}
+{% endif %}
+
 <div class="{{ include.type | default: "list" }}__item">
   <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
     {% if include.type == "grid" and teaser %}
@@ -26,7 +31,7 @@
       </div>
     {% endif %}
     <h2 class="archive__item-title" itemprop="headline">
-      {% if include.no_permalink %}
+      {% if force_no_permalink %}
         {{ title }}
       {% elsif post.link %}
         <a href="{{ post.link }}">{{ title }}</a> <a href="{{ base_path }}{{ post.url }}" rel="permalink"><i class="fa fa-link" aria-hidden="true" title="permalink"></i><span class="sr-only">Permalink</span></a>

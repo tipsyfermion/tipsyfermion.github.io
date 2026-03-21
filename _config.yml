@@ -25,8 +25,8 @@ author:
   # Biographic information
   avatar           : "profile.png"
   name             : "Debaditya Bhattacharya"
-  pronouns         : "he/him"  
-  bio              : ""
+  pronouns         : #"he/him"  
+  bio              : "Semiconductor Device Physicist, PhD student at Cornell University"
   location         : "Ithaca, NY, USA"
   employer         : "Cornell University"
   uri              : # URL

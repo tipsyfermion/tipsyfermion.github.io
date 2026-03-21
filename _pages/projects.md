@@ -1,15 +1,12 @@
 ---
 layout: archive
-title: "Portfolio"
-permalink: /portfolio/
+title: "Projects"
+permalink: /projects/
 author_profile: true
-redirect_to: /projects/
 ---
 
 {% include base_path %}
 
-
 {% for post in site.portfolio %}
   {% include archive-single.html %}
 {% endfor %}
-
