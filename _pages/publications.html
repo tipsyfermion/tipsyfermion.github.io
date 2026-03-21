@@ -24,7 +24,7 @@ author_profile: true
       {% assign section_has_posts = true %}
       {% assign article_number = article_number | plus: 1 %}
       {% capture number_prefix %}{{ article_number }}.{% endcapture %}
-      {% include archive-single.html number_prefix=number_prefix %}
+      {% include archive-single.html number_prefix=number_prefix no_permalink=true %}
     {% endfor %}
     {% unless section_has_posts %}
       <p>No entries yet.</p>
@@ -32,7 +32,7 @@ author_profile: true
   {% endfor %}
 {% else %}
   {% for post in site.publications reversed %}
-    {% include archive-single.html %}
+    {% include archive-single.html no_permalink=true %}
   {% endfor %}
 {% endif %}
 
