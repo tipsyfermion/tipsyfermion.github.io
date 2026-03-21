@@ -1,23 +1,32 @@
-# Welcome to My Portfolio
+---
+layout: home
+author_profile: true
+---
+
+# Welcome to My Website
+
+Add a brief biography, introduction, or welcome message here. This will be displayed on the front page of your website alongside your profile picture and social links.
 
 ## About Me
 
-Hello! I'm **Debaditya Bhattacharya**, a dedicated professional passionate about technology, research, and innovation. This website showcases my work, projects, and academic contributions.
+Add your professional biography, research interests, and background information here. This is a good place to introduce yourself and give visitors an overview of your work and interests.
 
-With a focus on practical solutions and continuous learning, I work at the intersection of technology and real-world applications. Whether it's developing cutting-edge projects or conducting meaningful research, I'm committed to making a positive impact.
+Consider including:
+- Your academic/professional background
+- Research interests or focus areas  
+- Current affiliations
+- Notable achievements or publications
+- Areas of expertise
 
-### Key Interests
-- Software Development & Engineering
-- Research & Innovation
-- Technical Problem Solving
-- Open Source Contributions
+## Quick Navigation
+
+- **[Publications](/publications/)** - View academic publications and research
+- **[Talks](/talks/)** - Conference presentations and talks
+- **[Teaching](/teaching/)** - Courses and educational materials
+- **[Portfolio](/portfolio/)** - Projects and portfolio items
+- **[Blog](/year-archive/)** - Blog posts and articles
+- **[CV](/cv/)** - Download your curriculum vitae
 
 ---
 
-## Recent Highlights
-
-Explore my [projects](projects.md) to see what I've been working on, or check out my [publications and research](publications.md) for academic contributions. Feel free to [get in touch](contact.md) with me for collaborations or inquiries.
-
----
-
-*Last updated: March 2026*
+*Welcome! Feel free to customize this page with your own content.*
