@@ -17,6 +17,10 @@
   {% assign force_no_permalink = true %}
 {% endif %}
 
+{% if post.collection == 'publications' and post.doi %}
+  {% capture doi_href %}https://doi.org/{{ post.doi | remove: 'https://doi.org/' | remove: 'http://doi.org/' | remove: 'doi:' | strip }}{% endcapture %}
+{% endif %}
+
 <div class="{{ include.type | default: "list" }}__item">
   <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
     {% if include.type == "grid" and teaser %}
@@ -32,7 +36,9 @@
     {% endif %}
 
     <h2 class="archive__item-title" itemprop="headline">
-      {% if force_no_permalink %}
+      {% if post.collection == 'publications' and post.doi %}
+        <a href="{{ doi_href }}" rel="nofollow noopener" target="_blank">{% if include.number_prefix %}{{ include.number_prefix }} {% endif %}{{ title }}</a>
+      {% elsif force_no_permalink %}
         {% if include.number_prefix %}{{ include.number_prefix }} {% endif %}{{ title }}
       {% elsif post.link %}
         <a href="{{ post.link }}">{% if include.number_prefix %}{{ include.number_prefix }} {% endif %}{{ title }}</a> <a href="{{ base_path }}{{ post.url }}" rel="permalink"><i class="fa fa-link" aria-hidden="true" title="permalink"></i><span class="sr-only">Permalink</span></a>
@@ -62,9 +68,7 @@
     <p class="archive__item-excerpt" itemprop="description"><p>{{ post.excerpt | markdownify | remove: '<p>' | remove: '</p>' }}<strong><a href="{{ base_path }}{{ post.url }}" rel="permalink"> Read more</a></strong></p></p>
     {% endif %}
     
-    {% if post.collection == 'publications' and post.doi %}
-      <p>DOI: <a href="https://doi.org/{{ post.doi | remove: 'https://doi.org/' | remove: 'http://doi.org/' | remove: 'doi:' }}">{{ post.doi }}</a></p>
-    {% elsif post.paperurl and post.bibtexurl %}
+    {% if post.paperurl and post.bibtexurl %}
       <p><a href="{{ post.paperurl }}">Download Paper</a> | <a href="{{ post.bibtexurl }}">Download Bibtex</a></p>
     {% elsif post.paperurl %}
       <p><a href="{{ post.paperurl }}">Download Paper</a></p>

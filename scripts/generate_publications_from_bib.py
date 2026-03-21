@@ -156,19 +156,78 @@ def clean_latex(text: str) -> str:
     return text.strip()
 
 
+def format_title(title_raw: str) -> str:
+    """Keep BibTeX title math/markup so markdown+MathJax can render it."""
+    if not title_raw:
+        return ""
+
+    text = title_raw.strip()
+
+    # Common mojibake fixes so symbols render cleanly in markdown.
+    replacements = {
+        "âˆ’": "-",
+        "â€“": "-",
+        "â€”": "-",
+        "â‰¤": "<=",
+        "â‰¥": ">=",
+        "â‰ˆ": "~",
+        "Ã—": "x",
+        "Â ": " ",
+        "Â°": "°",
+        "Î±": "α",
+        "Î¼": "μ",
+        "Î©": "Ω",
+        "Ïƒ": "σ",
+        "Ï±": "ϱ",
+        "Ã¶": "ö",
+        "Ã¡": "á",
+    }
+    for bad, good in replacements.items():
+        text = text.replace(bad, good)
+
+    # Remove BibTeX capitalization braces around plain tokens, but keep
+    # braces used in math commands like $_{...}$ and command arguments.
+    text = re.sub(r"\{([A-Za-z0-9\-]+)\}", r"\1", text)
+    text = re.sub(r"\s+", " ", text).strip()
+    return text
+
+
+def _normalize_author_name(author: str) -> str:
+    author = clean_latex(author)
+    parts = [p.strip() for p in author.split(",")]
+
+    # biblatex often exports names as "Family, Given".
+    if len(parts) >= 2 and parts[0] and parts[1]:
+        family = parts[0]
+        given = parts[1]
+        suffix = ", ".join(p for p in parts[2:] if p)
+        normalized = f"{given} {family}"
+        if suffix:
+            normalized = f"{normalized}, {suffix}"
+    else:
+        normalized = author
+
+    normalized = re.sub(r"\s+", " ", normalized).strip()
+
+    if re.search(r"\bbhattacharya\b", normalized, flags=re.IGNORECASE):
+        normalized = "Debaditya Bhattacharya"
+        return f"**{normalized}**"
+
+    return normalized
+
+
 def format_authors(author_raw: str) -> str:
     if not author_raw:
         return ""
 
-    parts = [clean_latex(p).strip() for p in re.split(r"\s+and\s+", author_raw) if p.strip()]
-    formatted = []
-    for author in parts:
-        # Highlight the site owner's surname in publication lists.
-        if re.search(r"\bbhattacharya\b", author, flags=re.IGNORECASE):
-            formatted.append(f"**{author}**")
-        else:
-            formatted.append(author)
-    return ", ".join(formatted)
+    names = [_normalize_author_name(p.strip()) for p in re.split(r"\s+and\s+", author_raw) if p.strip()]
+    if not names:
+        return ""
+    if len(names) == 1:
+        return names[0]
+    if len(names) == 2:
+        return f"{names[0]} and {names[1]}"
+    return f"{', '.join(names[:-1])}, and {names[-1]}"
 
 
 def normalize_doi(doi_or_url: str) -> str:
@@ -186,7 +245,7 @@ def extract_year(year_raw: str) -> int | None:
 
 
 def build_markdown(fields: dict[str, str], category: str) -> tuple[str, str]:
-    title = clean_latex(fields.get("title", fields["key"]))
+    title = format_title(fields.get("title", fields["key"]))
     venue = clean_latex(fields.get("journal") or fields.get("booktitle") or "")
     authors = format_authors(fields.get("author", ""))
     year_raw = fields.get("year", "")
