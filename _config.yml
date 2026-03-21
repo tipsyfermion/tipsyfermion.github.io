@@ -1,0 +1,21 @@
+title: "Debaditya Bhattacharya"
+description: "Professional Portfolio and Research Showcase"
+author: "Debaditya Bhattacharya"
+email: "your-email@debbh.me"
+url: "https://debbh.me"
+
+# Theme
+theme: jekyll-theme-minimal
+
+# Navigation
+header_pages:
+  - projects.md
+  - publications.md
+  - contact.md
+
+# Site settings
+logo: /assets/images/profile.jpg
+show_downloads: false
+
+# Footer
+footer_text: "© 2026 Debaditya Bhattacharya. All rights reserved."
