@@ -156,6 +156,21 @@ def clean_latex(text: str) -> str:
     return text.strip()
 
 
+def format_authors(author_raw: str) -> str:
+    if not author_raw:
+        return ""
+
+    parts = [clean_latex(p).strip() for p in re.split(r"\s+and\s+", author_raw) if p.strip()]
+    formatted = []
+    for author in parts:
+        # Highlight the site owner's surname in publication lists.
+        if re.search(r"\bbhattacharya\b", author, flags=re.IGNORECASE):
+            formatted.append(f"**{author}**")
+        else:
+            formatted.append(author)
+    return ", ".join(formatted)
+
+
 def normalize_doi(doi_or_url: str) -> str:
     value = doi_or_url.strip()
     value = re.sub(r"^https?://(dx\.)?doi\.org/", "", value, flags=re.IGNORECASE)
@@ -173,6 +188,7 @@ def extract_year(year_raw: str) -> int | None:
 def build_markdown(fields: dict[str, str], category: str) -> tuple[str, str]:
     title = clean_latex(fields.get("title", fields["key"]))
     venue = clean_latex(fields.get("journal") or fields.get("booktitle") or "")
+    authors = format_authors(fields.get("author", ""))
     year_raw = fields.get("year", "")
     year = extract_year(year_raw)
     date_str = f"{year}-01-01" if year else "1900-01-01"
@@ -196,6 +212,9 @@ def build_markdown(fields: dict[str, str], category: str) -> tuple[str, str]:
         f"date: {date_str}",
         f"venue: '{venue.replace("'", "''")}'",
     ]
+
+    if authors:
+        lines.append(f"authors: '{authors.replace("'", "''")}'")
 
     if doi:
         lines.append(f"doi: '{doi}'")

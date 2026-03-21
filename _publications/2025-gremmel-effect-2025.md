@@ -6,6 +6,7 @@ permalink: /publication/2025-gremmel-effect-2025
 excerpt: ''
 date: 2025-01-01
 venue: 'Journal of Applied Physics'
+authors: 'Gremmel, Maike, Prakash Savant, Chandrashekhar, **D. Bhattacharya**, Schönweger, Georg, Jena, Debdeep, Fichtner, Simon'
 doi: '10.1063/5.0263916'
 ---
 
