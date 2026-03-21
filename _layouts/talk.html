@@ -1,0 +1,24 @@
+---
+layout: default
+---
+
+<div class="page-content">
+  <article class="talk h-entry" itemscope itemtype="https://schema.org/Event">
+    <header class="talk-header">
+      <h1 class="talk-title p-name" itemprop="name">{{ page.title | escape }}</h1>
+      {% if page.date %}
+        <p class="talk-meta">
+          <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="startDate">
+            {{ page.date | date: "%b %-d, %Y" }}
+          </time>
+        </p>
+      {% endif %}
+      {% if page.venue %}
+        <p class="talk-venue" itemprop="location">{{ page.venue }}</p>
+      {% endif %}
+    </header>
+    <div class="talk-content e-content" itemprop="description">
+      {{ content }}
+    </div>
+  </article>
+</div>

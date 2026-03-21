@@ -1,6 +1,7 @@
 ---
 title: "Sample Publication 1"
 collection: publications
+layout: single
 permalink: /publication/2024-sample-publication-1
 excerpt: 'This is a sample publication entry. Replace with your actual publication details.'
 date: 2024-01-15

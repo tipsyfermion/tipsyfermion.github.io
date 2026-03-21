@@ -2,6 +2,7 @@
 title: "Sample Course: Introduction to Topic"
 collection: teaching
 type: "Course"
+layout: single
 permalink: /teaching/2024-sample-course
 venue: "Your University"
 date: 2024-01-15
