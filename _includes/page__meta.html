@@ -1,0 +1,3 @@
+{% if include.type contains "posts" or include.type == "post" %}
+  <p class="page__meta"><i class="far fa-calendar-alt" aria-hidden="true"></i> <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %d, %Y" }}</time></p>
+{% endif %}
