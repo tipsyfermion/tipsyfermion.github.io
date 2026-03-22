@@ -8,7 +8,7 @@ redirect_from:
 ---
 Hello and welcome to my corner of the web!
 
-<div style="text-align: justify;">
+<div style="text-align: justify;" markdown="1">
 
 I am a PhD student in the Department of Electrical and Computer Engineering at Cornell University, where I work on the design, synthesis, and nanofabrication of wide‑bandgap semiconductors and their devices.
 
