@@ -185,9 +185,23 @@ def format_title(title_raw: str) -> str:
     for bad, good in replacements.items():
         text = text.replace(bad, good)
 
-    # Remove BibTeX capitalization braces around plain tokens, but keep
-    # braces used in math commands like $_{...}$ and command arguments.
-    text = re.sub(r"\{([A-Za-z0-9\-]+)\}", r"\1", text)
+    # Remove BibTeX grouping/capitalization braces outside math mode while
+    # preserving braces inside $...$ (needed for subscripts/superscripts).
+    out = []
+    in_math = False
+    i = 0
+    while i < len(text):
+        ch = text[i]
+        if ch == "$" and (i == 0 or text[i - 1] != "\\"):
+            in_math = not in_math
+            out.append(ch)
+        elif ch in "{}" and not in_math:
+            pass
+        else:
+            out.append(ch)
+        i += 1
+    text = "".join(out)
+
     text = re.sub(r"\s+", " ", text).strip()
     return text
 

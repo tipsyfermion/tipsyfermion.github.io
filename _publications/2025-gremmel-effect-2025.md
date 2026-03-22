@@ -1,5 +1,5 @@
 ---
-title: "The effect of boron incorporation on leakage and wake-up in ferroelectric {Al$_{(1-x)}$Sc$_x$N}"
+title: "The effect of boron incorporation on leakage and wake-up in ferroelectric Al$_{(1-x)}$Sc$_x$N"
 collection: publications
 category: peer_reviewed
 permalink: /publication/2025-gremmel-effect-2025

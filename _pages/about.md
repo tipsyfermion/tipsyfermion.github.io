@@ -8,6 +8,8 @@ redirect_from:
 ---
 Hello and welcome to my corner of the web!
 
+<div style="text-align: justify;">
+
 I am a PhD student in the Department of Electrical and Computer Engineering at Cornell University, where I work on the design, synthesis, and nanofabrication of wide‑bandgap semiconductors and their devices.
 
 My background in physics began at IIT Kanpur, where I completed my bachelor’s degree in 2023. Over the years my interests wandered—from psychology to neuroscience to the AUV team—before finally settling into the world of semiconductor physics. After graduating, I moved to Ithaca to join the Jena‑Xing Group at Cornell University.
@@ -21,3 +23,5 @@ Outside the cleanroom, I served as President of the Electron Devices Society (ED
 When I’m not in the lab, I like watching movies, playing (and making mods for) Minecraft, mentoring newer students in our group, and building Python‑based tools to automate laboratory measurements.
 
 This site is a simple collection of the projects, papers, and technical puzzles I’ve worked on over the years. Feel free to look around — and reach out if you’d like to chat!
+
+</div>
