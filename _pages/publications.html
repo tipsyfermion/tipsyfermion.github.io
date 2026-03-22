@@ -13,17 +13,17 @@ author_profile: true
 
 <!-- New style rendering if publication categories are defined -->
 {% if site.publication_category %}
-  {% assign article_number = 0 %}
   {% for category in site.publication_category  %}
     <h2>{{ category[1].title }}</h2><hr />
     {% assign section_has_posts = false %}
+    {% assign section_number = 0 %}
     {% for post in site.publications reversed %}
       {% if post.category != category[0] %}
         {% continue %}
       {% endif %}
       {% assign section_has_posts = true %}
-      {% assign article_number = article_number | plus: 1 %}
-      {% capture number_prefix %}{{ article_number }}.{% endcapture %}
+      {% assign section_number = section_number | plus: 1 %}
+      {% capture number_prefix %}{{ section_number }}.{% endcapture %}
       {% include archive-single.html number_prefix=number_prefix no_permalink=true %}
     {% endfor %}
     {% unless section_has_posts %}

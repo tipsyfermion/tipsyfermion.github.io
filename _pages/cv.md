@@ -7,4 +7,4 @@ redirect_from:
   - /resume
 ---
 
-Please download my CV here: [CV PDF](/files/cv.pdf)
+Please download my CV here: [CV PDF](/files/Debaditya_CV.pdf)
