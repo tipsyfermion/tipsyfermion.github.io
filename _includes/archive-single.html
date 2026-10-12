@@ -7,7 +7,12 @@
 {% endif %}
 
 {% if post.id %}
-  {% assign title = post.title | markdownify | remove: "<p>" | remove: "</p>" %}
+  {% if post.title contains "$" %}
+    {% comment %}Skip markdownify so kramdown does not turn LaTeX subscripts into emphasis; MathJax renders it.{% endcomment %}
+    {% assign title = post.title | escape %}
+  {% else %}
+    {% assign title = post.title | markdownify | remove: "<p>" | remove: "</p>" %}
+  {% endif %}
 {% else %}
   {% assign title = post.title %}
 {% endif %}
