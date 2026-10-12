@@ -258,13 +258,26 @@ def extract_year(year_raw: str) -> int | None:
     return int(m.group(0))
 
 
+MONTHS = {m: i for i, m in enumerate(
+    ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"], start=1
+)}
+
+
+def extract_month(month_raw: str) -> int:
+    value = month_raw.strip().lower()
+    if value.isdigit() and 1 <= int(value) <= 12:
+        return int(value)
+    return MONTHS.get(value[:3], 1)
+
+
 def build_markdown(fields: dict[str, str], category: str) -> tuple[str, str]:
     title = format_title(fields.get("title", fields["key"]))
     venue = clean_latex(fields.get("journal") or fields.get("booktitle") or "")
     authors = format_authors(fields.get("author", ""))
     year_raw = fields.get("year", "")
     year = extract_year(year_raw)
-    date_str = f"{year}-01-01" if year else "1900-01-01"
+    month = extract_month(fields.get("month", ""))
+    date_str = f"{year}-{month:02d}-01" if year else "1900-01-01"
 
     doi = ""
     if fields.get("doi"):
